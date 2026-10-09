@@ -8,7 +8,7 @@ export const growthepiePlugin: GloomPlugin = {
   id: GROWTHEPIE_PLUGIN_ID,
   name: "growthepie",
   version: "1.0.0",
-  description: "Ethereum and Layer-2 metrics from growthepie (CC BY 4.0)",
+  description: "Layer 2 Metrics from growthepie (CC BY 4.0)",
   homepage: "https://github.com/gloom-sh/gloom-growthepie",
   toggleable: true,
 
@@ -28,7 +28,7 @@ export const growthepiePlugin: GloomPlugin = {
   panes: [
     {
       id: GROWTHEPIE_PANE_ID,
-      name: "growthepie",
+      name: "Layer 2 Metrics",
       icon: "G",
       component: GrowthepiePane,
       defaultPosition: "right",
@@ -43,8 +43,8 @@ export const growthepiePlugin: GloomPlugin = {
     {
       id: "growthepie-pane",
       paneId: GROWTHEPIE_PANE_ID,
-      label: "growthepie",
-      description: "Ethereum and Layer-2 chains side by side: transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured, with a daily history chart. Data from growthepie.",
+      label: "Layer 2 Metrics",
+      description: "Ethereum and Layer 2 chains side by side: transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured, with a daily history chart. Data from growthepie.",
       keywords: ["growthepie", "gtp", "ethereum", "layer 2", "l2", "rollups", "tvl", "fees", "stablecoins", "base", "arbitrum", "optimism"],
       shortcut: {
         prefix: "GTP",

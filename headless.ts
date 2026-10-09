@@ -108,7 +108,7 @@ export function createGrowthepieHeadless(
 ): HeadlessPaneDefinition<"bundle"> {
   return {
     shape: "bundle",
-    description: "Ethereum and Layer-2 chains ranked by one metric, with transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured side by side, and one chain's daily history on request. Data from growthepie (CC BY 4.0).",
+    description: "Ethereum and Layer 2 chains ranked by one metric, with transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured side by side, and one chain's daily history on request. Data from growthepie (CC BY 4.0).",
     discovery: {
       aliases: ["growthepie", "l2", "layer 2", "rollups", "chain metrics", "tvl", "stablecoins", "gas fees"],
       dataRequirements: ["growthepie public API (api.growthepie.com), CC BY 4.0"],
@@ -142,7 +142,7 @@ export function createGrowthepieHeadless(
         settingKey: "range",
       },
     ],
-    describe: (args) => `growthepie | ${metricDef(metricOption(args)).title}`,
+    describe: (args) => `Layer 2 Metrics | ${metricDef(metricOption(args)).title}`,
     async load(args, ctx) {
       const metric = metricOption(args);
       const def = metricDef(metric);

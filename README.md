@@ -1,6 +1,6 @@
-# growthepie for Gloom
+# Layer 2 Metrics from growthepie
 
-Ethereum and Layer-2 chains side by side: transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured, with a 30 day change for the metric you pick and a daily history chart for the selected chain.
+Ethereum and Layer 2 chains side by side: transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured, with a 30 day change for the metric you pick and a daily history chart for the selected chain.
 
 This is an independent plugin. It is not made, reviewed or endorsed by growthepie.
 

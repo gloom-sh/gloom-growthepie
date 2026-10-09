@@ -1,7 +1,7 @@
 {
   "name": "gloom-growthepie",
   "version": "1.0.0",
-  "description": "Ethereum and Layer-2 metrics from growthepie for Gloom",
+  "description": "Layer 2 Metrics from growthepie for Gloom",
   "type": "module",
   "main": "index.tsx",
   "license": "MIT",
