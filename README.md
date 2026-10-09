@@ -12,7 +12,7 @@ Requires Gloom 0.15.3 or newer.
 gloomberb install gloom-sh/gloom-growthepie
 ```
 
-Open `GTP` in the command bar, or `GTP base` to open it on one chain. Also in the hosted web app at term.gloom.sh, where the host proxies the data source.
+Open `GTP` in the command bar, or `GTP base` to open it on one chain. It works in the terminal and the desktop app. It also declares the web target and its one API host, `api.growthepie.com`, so the hosted web app can bundle it and proxy the requests.
 
 ## Usage
 
