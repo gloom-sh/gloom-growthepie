@@ -61,6 +61,17 @@ import {
 /** How long the selection rests on a chain before its full history is requested. */
 const HISTORY_SETTLE_MS = 450;
 
+/** What the footer spends on its frame and the open hint, so the info that fits can be chosen up front. */
+const FOOTER_INFO_CHROME = 10;
+const CHANGE_NOTE = "30D change computed by Gloom";
+const CHANGE_NOTE_SHORT = "30D computed by Gloom";
+
+function infoWidth(segments: ReadonlyArray<{ parts: ReadonlyArray<{ text: string }> }>): number {
+  return segments.reduce((total, segment, index) => (
+    total + (index > 0 ? 1 : 0) + segment.parts.reduce((sum, part, partIndex) => sum + (partIndex > 0 ? 1 : 0) + part.text.length, 0)
+  ), 0);
+}
+
 interface HistoryState {
   data: HistoryData | null;
   loading: boolean;
@@ -254,17 +265,28 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
   // ---- Footer: the source line, what Gloom computed, and changing status.
   const updatedAgo = useUpdatedAgo(overview?.fetchedAt ?? null);
   const footerInfo = useMemo(() => {
-    const ok = !refreshError;
-    return [
-      {
-        id: "source",
-        onPress: () => openUrl(GROWTHEPIE_URL),
-        parts: [{ text: "Source:", tone: "label" as const }, { text: GROWTHEPIE_SOURCE_LABEL, tone: "value" as const }],
-      },
-      ...(data && ok ? [{ id: "computed", parts: [{ text: "30D change computed by Gloom", tone: "muted" as const }] }] : []),
-      ...(updatedAgo ? [{ id: "updated", parts: [{ text: `updated ${updatedAgo}`, tone: "muted" as const }] }] : []),
-    ];
-  }, [data, refreshError, updatedAgo]);
+    const source = {
+      id: "source",
+      onPress: () => openUrl(GROWTHEPIE_URL),
+      parts: [{ text: "Source:", tone: "label" as const }, { text: GROWTHEPIE_SOURCE_LABEL, tone: "value" as const }],
+    };
+    const note = (text: string) => ({ id: "computed", parts: [{ text, tone: "muted" as const }] });
+    const updated = updatedAgo ? { id: "updated", parts: [{ text: `updated ${updatedAgo}`, tone: "muted" as const }] } : null;
+    const withUpdated = updated ? [updated] : [];
+    // The credit never gives way: a narrow pane loses the other segments first, in this order.
+    const candidates = !data
+      ? [[source]]
+      : refreshError
+        ? [[source, ...withUpdated], [source]]
+        : [
+          [source, note(CHANGE_NOTE), ...withUpdated],
+          [source, note(CHANGE_NOTE)],
+          [source, note(CHANGE_NOTE_SHORT)],
+          [source],
+        ];
+    const budget = width - FOOTER_INFO_CHROME;
+    return candidates.find((option) => infoWidth(option) <= budget) ?? candidates[candidates.length - 1]!;
+  }, [data, refreshError, updatedAgo, width]);
 
   usePaneStatusLinkFooter({
     registrationId: "growthepie",

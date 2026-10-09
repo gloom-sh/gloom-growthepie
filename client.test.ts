@@ -71,13 +71,13 @@ describe("growthepie client", () => {
     // Inside the wait nothing is sent, and the message says how long is left.
     const blocked = await failure(client.fetchMaster());
     expect(blocked.kind).toBe("backoff");
-    expect(blocked.message).toBe("growthepie is not answering. Next try in 30s.");
+    expect(blocked.message).toBe("Not answering, next try in 30s.");
     expect(calls).toHaveLength(1);
     advance(30_000);
     await failure(client.fetchMaster());
     expect(calls).toHaveLength(2);
     advance(30_000);
-    expect((await failure(client.fetchMaster())).message).toBe("growthepie is not answering. Next try in 30s.");
+    expect((await failure(client.fetchMaster())).message).toBe("Not answering, next try in 30s.");
     advance(30_000);
     await failure(client.fetchMaster());
     expect(calls).toHaveLength(3);
@@ -104,10 +104,10 @@ describe("growthepie client", () => {
       new Response("slow down", { status: 429, headers: { "retry-after": "120" } }),
     ]);
     const limited = await failure(client.fetchMaster());
-    expect(limited).toMatchObject({ kind: "rate-limit", message: "growthepie is limiting requests. Next try in 2m." });
+    expect(limited).toMatchObject({ kind: "rate-limit", message: "Rate limited, next try in 2m." });
     const other = await failure(client.fetchFundamentals());
     expect(other.kind).toBe("backoff");
-    expect(other.message).toBe("growthepie asked for fewer requests. Next try in 2m.");
+    expect(other.message).toBe("Rate limited, next try in 2m.");
     expect(calls).toHaveLength(1);
     advance(119_000);
     expect((await failure(client.fetchFundamentals())).kind).toBe("backoff");
@@ -118,7 +118,7 @@ describe("growthepie client", () => {
 
   test("a 429 without Retry-After still waits a minute", async () => {
     const { client } = harness([new Response("slow down", { status: 429 })]);
-    expect((await failure(client.fetchMaster())).message).toBe("growthepie is limiting requests. Next try in 60s.");
+    expect((await failure(client.fetchMaster())).message).toBe("Rate limited, next try in 60s.");
   });
 
   test("an unreachable network is reported plainly", async () => {

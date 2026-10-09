@@ -75,7 +75,7 @@ export function createGrowthepieClient(options: GrowthepieClientOptions = {}): G
     const at = now();
     if (at < rateLimitedUntil) {
       throw new GrowthepieError(
-        `growthepie asked for fewer requests. Next try in ${seconds(rateLimitedUntil - at)}.`,
+        `Rate limited, next try in ${seconds(rateLimitedUntil - at)}.`,
         "backoff",
         rateLimitedUntil - at,
       );
@@ -83,7 +83,7 @@ export function createGrowthepieClient(options: GrowthepieClientOptions = {}): G
     const failure = failures.get(key);
     if (failure && at < failure.until) {
       throw new GrowthepieError(
-        `growthepie is not answering. Next try in ${seconds(failure.until - at)}.`,
+        `Not answering, next try in ${seconds(failure.until - at)}.`,
         "backoff",
         failure.until - at,
       );
@@ -110,7 +110,7 @@ export function createGrowthepieClient(options: GrowthepieClientOptions = {}): G
       const wait = Math.max(RATE_LIMIT_MIN_WAIT_MS, Number.isFinite(header) ? header * 1000 : 0);
       rateLimitedUntil = now() + wait;
       recordFailure(key);
-      throw new GrowthepieError(`growthepie is limiting requests. Next try in ${seconds(wait)}.`, "rate-limit", wait);
+      throw new GrowthepieError(`Rate limited, next try in ${seconds(wait)}.`, "rate-limit", wait);
     }
     if (!response.ok) {
       recordFailure(key);
