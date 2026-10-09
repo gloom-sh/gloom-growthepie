@@ -5,6 +5,7 @@ import {
   DataTableView,
   PaneStatusBody,
   QueryBar,
+  openUrl,
   scalarPoint,
   staticSeries,
   unavailableText,
@@ -255,7 +256,11 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
   const footerInfo = useMemo(() => {
     const ok = !refreshError;
     return [
-      { id: "source", parts: [{ text: "Source:", tone: "label" as const }, { text: GROWTHEPIE_SOURCE_LABEL, tone: "value" as const }] },
+      {
+        id: "source",
+        onPress: () => openUrl(GROWTHEPIE_URL),
+        parts: [{ text: "Source:", tone: "label" as const }, { text: GROWTHEPIE_SOURCE_LABEL, tone: "value" as const }],
+      },
       ...(data && ok ? [{ id: "computed", parts: [{ text: "30D change computed by Gloom", tone: "muted" as const }] }] : []),
       ...(updatedAgo ? [{ id: "updated", parts: [{ text: `updated ${updatedAgo}`, tone: "muted" as const }] }] : []),
     ];
@@ -309,6 +314,12 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
       search.focus();
       return true;
     }
+    if (event.name === "/" || isPlainKey(event, "/")) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      search.focus();
+      return true;
+    }
     return false;
   }, [search]);
 
@@ -329,7 +340,7 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
         value: query,
         onChange: setQuery,
         placeholder: "chain",
-        focused: focused && !search.active,
+        focused,
         ...search.searchProps,
         debounceMs: 80,
       }}
