@@ -257,7 +257,7 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
       formatValue: (value) => formatMetricValue(metric, value),
       formatAxisValue: (value, domain) => formatMetricAxis(metric, value, domain),
       loading: historyLoading,
-      empty: `No ${def.title.toLowerCase()} for ${selectedRow.chain.shortName}.`,
+      empty: `${def.title} not available for ${selectedRow.chain.shortName}.`,
       remoteKind: "growthepie-history",
     };
   }, [chartSeries, def.title, historyLoading, metric, selectedRow]);

@@ -113,9 +113,9 @@ export function createGrowthepieHeadless(
       aliases: ["growthepie", "l2", "layer 2", "rollups", "chain metrics", "tvl", "stablecoins", "gas fees"],
       dataRequirements: ["growthepie public API (api.growthepie.com), CC BY 4.0"],
       limitations: [
-        "Daily values, published once a day with the latest day complete",
-        CHANGE_NOTE,
-        "Not every chain has every metric",
+        "Daily values, published once a day.",
+        `${CHANGE_NOTE}.`,
+        "Not every chain has every metric.",
       ],
     },
     argument: {

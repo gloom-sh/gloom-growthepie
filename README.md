@@ -6,7 +6,7 @@ This is an independent plugin. It is not made, reviewed or endorsed by growthepi
 
 ## Install
 
-Requires Gloom 0.15.0 or newer.
+Requires Gloom 0.15.3 or newer.
 
 ```sh
 gloomberb install gloom-sh/gloom-growthepie
