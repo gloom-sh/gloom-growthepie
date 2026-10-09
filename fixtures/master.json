@@ -1,0 +1,209 @@
+{
+ "current_version": "v1",
+ "last_updated_utc": "2026-10-08 05:30:08",
+ "chains": {
+  "ethereum": {
+   "name": "Ethereum Mainnet",
+   "url_key": "ethereum",
+   "chain_type": "l1",
+   "deployment": "PROD",
+   "name_short": "Ethereum L1",
+   "supported_metrics": [
+    "txcount",
+    "daa",
+    "stables_mcap",
+    "fees",
+    "txcosts",
+    "fdv",
+    "market_cap",
+    "throughput",
+    "app_revenue"
+   ]
+  },
+  "all_l2s": {
+   "name": "All L2s",
+   "url_key": "all-l2s",
+   "chain_type": "others",
+   "deployment": "PROD",
+   "name_short": "-",
+   "supported_metrics": [
+    "tvl",
+    "txcount",
+    "daa",
+    "stables_mcap",
+    "fees",
+    "rent_paid",
+    "profit",
+    "txcosts",
+    "fdv",
+    "market_cap",
+    "throughput",
+    "app_revenue"
+   ]
+  },
+  "base": {
+   "name": "Base Chain",
+   "url_key": "base",
+   "chain_type": "rollup",
+   "deployment": "PROD",
+   "name_short": "Base",
+   "supported_metrics": [
+    "tvl",
+    "txcount",
+    "daa",
+    "stables_mcap",
+    "fees",
+    "rent_paid",
+    "profit",
+    "txcosts",
+    "throughput",
+    "app_revenue"
+   ]
+  },
+  "arbitrum": {
+   "name": "Arbitrum One",
+   "url_key": "arbitrum",
+   "chain_type": "rollup",
+   "deployment": "PROD",
+   "name_short": "Arbitrum",
+   "supported_metrics": [
+    "tvl",
+    "txcount",
+    "daa",
+    "stables_mcap",
+    "fees",
+    "rent_paid",
+    "profit",
+    "txcosts",
+    "fdv",
+    "market_cap",
+    "throughput",
+    "app_revenue"
+   ]
+  },
+  "megaeth": {
+   "name": "MegaETH",
+   "url_key": "megaeth",
+   "chain_type": "others",
+   "deployment": "PROD",
+   "name_short": "MegaETH",
+   "supported_metrics": [
+    "tvl",
+    "txcount",
+    "daa",
+    "stables_mcap",
+    "fees",
+    "rent_paid",
+    "profit",
+    "txcosts",
+    "fdv",
+    "market_cap",
+    "throughput",
+    "app_revenue"
+   ]
+  }
+ },
+ "metrics": {
+  "txcount": {
+   "name": "Transaction Count",
+   "metric_keys": [
+    "txcount"
+   ],
+   "hourly_available": true,
+   "url_path": "/fundamentals/transaction-count",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "daa": {
+   "name": "Active Addresses",
+   "metric_keys": [
+    "daa"
+   ],
+   "hourly_available": true,
+   "url_path": "/fundamentals/daily-active-addresses",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "fees": {
+   "name": "Revenue",
+   "metric_keys": [
+    "fees_paid_usd",
+    "fees_paid_eth"
+   ],
+   "hourly_available": true,
+   "url_path": "/fundamentals/fees-paid-by-users",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "txcosts": {
+   "name": "Transaction Costs",
+   "metric_keys": [
+    "txcosts_median_usd",
+    "txcosts_median_eth"
+   ],
+   "hourly_available": true,
+   "url_path": "/fundamentals/transaction-costs",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "throughput": {
+   "name": "Throughput",
+   "metric_keys": [
+    "gas_per_second"
+   ],
+   "hourly_available": true,
+   "url_path": "/fundamentals/throughput",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "stables_mcap": {
+   "name": "Stablecoin Supply",
+   "metric_keys": [
+    "stables_mcap",
+    "stables_mcap_eth"
+   ],
+   "hourly_available": false,
+   "url_path": "/fundamentals/stablecoin-market-cap",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "ethereum",
+    "megaeth"
+   ]
+  },
+  "tvl": {
+   "name": "Total Value Secured",
+   "metric_keys": [
+    "tvl",
+    "tvl_eth"
+   ],
+   "hourly_available": false,
+   "url_path": "/fundamentals/total-value-secured",
+   "supported_chains": [
+    "arbitrum",
+    "base",
+    "megaeth"
+   ]
+  }
+ }
+}

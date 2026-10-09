@@ -1,0 +1,33 @@
+{
+  "id": "growthepie",
+  "name": "growthepie",
+  "icon": "icon.webp",
+  "tagline": "Ethereum and Layer-2 metrics from growthepie",
+  "description": "Ethereum and Layer-2 chains side by side: transactions, active addresses, fees, transaction cost, throughput, stablecoin supply and total value secured, with 30 day changes and a daily history chart. Data is CC BY 4.0 from growthepie; 30 day changes are computed by Gloom.",
+  "categories": [
+    "data",
+    "crypto"
+  ],
+  "targets": [
+    "cli",
+    "tui",
+    "desktop",
+    "web"
+  ],
+  "hosts": [
+    "api.growthepie.com"
+  ],
+  "contributes": {
+    "panes": [
+      "growthepie"
+    ],
+    "shortcuts": [
+      {
+        "code": "GTP",
+        "name": "growthepie",
+        "description": "Ethereum and Layer-2 chains side by side with fees, activity, stablecoin supply and value secured."
+      }
+    ]
+  },
+  "minGloom": "0.15.0"
+}
