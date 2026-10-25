@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import * as Components from "gloomberb/components";
 import {
   Button,
   ChartTableHeader,
@@ -65,6 +66,11 @@ const HISTORY_SETTLE_MS = 450;
 const FOOTER_INFO_CHROME = 10;
 const CHANGE_NOTE = "30D change computed by Gloom";
 const CHANGE_NOTE_SHORT = "30D computed by Gloom";
+
+// Select once per host so older versions keep their existing layout behavior.
+const useTableLayoutWidth = (Components as typeof Components & {
+  useTableLayoutWidth?: (width: number) => number;
+}).useTableLayoutWidth ?? ((width: number) => width);
 
 function infoWidth(segments: ReadonlyArray<{ parts: ReadonlyArray<{ text: string }> }>): number {
   return segments.reduce((total, segment, index) => (
@@ -137,7 +143,8 @@ export function GrowthepiePane({ focused, width, height }: PaneProps) {
   const rows = useMemo(() => (data ? buildRows(data.master, data.fundamentals) : []), [data]);
   const sort = sortOverride ?? defaultSort(metric);
   const visible = useMemo(() => sortRows(filterRows(rows, query), sort, metric), [rows, query, sort, metric]);
-  const columns = useMemo(() => buildColumns(width, metric), [width, metric]);
+  const tableLayoutWidth = useTableLayoutWidth(width);
+  const columns = useMemo(() => buildColumns(tableLayoutWidth, metric), [tableLayoutWidth, metric]);
 
   // Before the user picks a chain the pane follows the top row, then keeps that
   // chain when another metric reorders the table, so switching tabs compares one chain.
